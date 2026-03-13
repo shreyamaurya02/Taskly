@@ -1,6 +1,6 @@
 import { useState } from "react"
 import API from "../api/api"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 function Register({ onSuccess }) {
   const [form, setForm] = useState({
@@ -17,7 +17,7 @@ function Register({ onSuccess }) {
     e.preventDefault()
 
     try {
-      const res = await API.post("/auth/register", form)
+      await API.post("/auth/register", form)
       // alert(res.data.message)
       alert("Registration successful! Please login.")
       // 🔁 switch back to login
