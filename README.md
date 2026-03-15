@@ -11,6 +11,14 @@ Backend: Node.js + Express
 Database: MongoDB Atlas
 Deployment: Vercel + Render
 
+## 📁 Project Structure
+
+Taskly
+ ├── client        # React frontend
+ ├── server        # Node.js backend
+ ├── screenshots   # App screenshots
+ └── README.md
+
 ## ✨ Features
 - User registration and login
 - JWT authentication
