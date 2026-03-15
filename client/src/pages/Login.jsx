@@ -8,6 +8,7 @@ function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -17,6 +18,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setLoading(true)
 
     try {
       const res = await API.post("/auth/login", {
@@ -35,6 +38,8 @@ function Login() {
     } catch (err) {
       alert(err.response?.data?.message || "Login failed")
     }
+
+    setLoading(false)
   }
 
   return (
@@ -56,8 +61,11 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-          Login
+        <button
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+        >
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
 

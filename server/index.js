@@ -11,7 +11,7 @@ app.use(cors({
   origin: "*"
 }))
 app.use(express.json())
-app.use("/api/tasks", require("./routes/task"))
+// app.use("/api/tasks", require("./routes/task"))
 
 
 // MongoDB Connection

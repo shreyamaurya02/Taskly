@@ -9,12 +9,16 @@ function Register({ onSuccess }) {
     password: ""
   })
 
+  const [loading, setLoading] = useState(false)
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setLoading(true)
 
     try {
       await API.post("/auth/register", form)
@@ -25,6 +29,8 @@ function Register({ onSuccess }) {
     } catch (err) {
       alert(err.response?.data?.message || "Register failed")
     }
+
+    setLoading(false)
   }
 
   return (
@@ -58,9 +64,10 @@ function Register({ onSuccess }) {
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        disabled={loading}
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
       >
-        Register
+        {loading ? "Registering..." : "Register"}
       </button>
     </form>
   )
